@@ -1,66 +1,67 @@
 (function( $ ){
 
-		/**
-		 * Shhh jQuery plugin 
-		 *
-		 * https://github.com/spangborn/Shhh
-		 */
-	
-		// Default values
-		var defaults = {
-			startRegex : /^\s*[A-z]/ig,
-			punctuationRegex: /((\.{4}|([^\.]\.)|\!|\?)\s+)([a-z])/ig,
-			ignore : ["I ", "I'm", "I'll", "I've", "I'd"]
-		};
-		
-		// Methods
-		var methods = {
-			init : function( target, options ) {
-				// Extend the options
-				var options = $.extend( defaults, options ); 
-				
-				methods.recompileRegex(options.startRegex, options.punctuationRegex);
+	/**
+	 * Shhh jQuery plugin 
+	 *
+	 * https://github.com/spangborn/Shhh
+	 */
 
-				// Call the function on each element in the selection
-				target.each( function (i, item) {
-					methods.transform( item, options  );
-					
-				});
-				
-			},
-			transform : function ( target, options ) {
-				var text = $(target).text();
-				
+	// Default values
+	var defaults = {
+		punctuation : ['.', '!', '?'],
+		ignore : ["I ", "I'm", "I'll", "I've", "I'd"]
+	};
+	
+	// Methods
+	var methods = {
+		init : function( target, options ) {
+			// Extend the options
+			options = $.extend( defaults, options ); 
+
+			// Call the function on each element in the selection
+			target.each( function (i, item) {
+				methods.transform( item, options );
+			});
 			
-				// Make everything lowercase
-			    text = text.toLowerCase();
-				
-			    // Don't change anything that should be ignored
-			    $(options.ignore).each(function ( i , value) {
-			    	text = text.replace( value.toLowerCase(), value );
-			    });	
-			    
-				// Make the start of the string(s) uppercase
-			    text = text.replace( options.startRegex, methods.upper );
-			    
-			    // Make the start of each sentence uppercase
-			    text = text.replace( options.punctuationRegex, methods.upper );
-			    
-			    return $(target).text(text);
-				
-			},
-			upper : function ( text ) {
-				return String(text).toUpperCase();
-			},
-			lower : function ( text ) {
-				return String(text).toLowerCase();
-			},
-	        recompileRegex : function(arguments) {
-				$(arguments).each(function(i,regex) {
-					regex.compile(String(regex).replace(/^\/|\/[a-z]*$/ig, ''), 'ig');
-				});
-			}
-	  };
+		},
+		transform : function ( target, options ) {
+			var text = $(target).text();
+			var pString = methods.punctuationString(options.punctuation);
+			
+			// Make everything lowercase
+			text = text.toLowerCase();
+			
+			// Change back the stuff that's on the "ignore" list
+			$(options.ignore).each(function ( i , value) {
+				var ignoreRegexp = new RegExp("(^|\\s+)" + value + "(\\s+|" + pString + ")", 'igm' );
+				console.info(String(ignoreRegexp));
+				text = text.replace( ignoreRegexp, '$1' + value + '$2' );
+			});	
+			
+			// Make the start of the string(s) uppercase
+			// text = text.replace( options.startRegex, methods.upper );
+			
+			// Make the start of each sentence uppercase
+			var sentenceBegin = new RegExp('(^|' + pString+')([a-z])', 'igm');
+			console.info(String(sentenceBegin));
+			text = text.replace( sentenceBegin , function(str) {
+				return String(str).toUpperCase();
+			});
+			
+			return $(target).text(text);
+			
+		},
+		
+		punctuationString : function(pArray) {
+			var str = '';
+			var nArray = [];
+			// /((\.|\!|\?)\s+)([a-z])/
+			$(pArray).each(function(index, punc) {
+				nArray.push( '\\' + punc);
+			})
+			return '((' + nArray.join('|') + ')(\\s+|$))'
+		}
+	};
 		
 	// The actual function definition
 	$.fn.shhh = function ( options ) {
