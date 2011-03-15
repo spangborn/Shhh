@@ -34,7 +34,6 @@
 			// Change back the stuff that's on the "ignore" list
 			$(options.ignore).each(function ( i , value) {
 				var ignoreRegexp = new RegExp("(^|\\s+)" + value + "(\\s+|" + pString + ")", 'igm' );
-				console.info(String(ignoreRegexp));
 				text = text.replace( ignoreRegexp, '$1' + value + '$2' );
 			});	
 			
@@ -43,7 +42,6 @@
 			
 			// Make the start of each sentence uppercase
 			var sentenceBegin = new RegExp('(^|' + pString+')([a-z])', 'igm');
-			console.info(String(sentenceBegin));
 			text = text.replace( sentenceBegin , function(str) {
 				return String(str).toUpperCase();
 			});
