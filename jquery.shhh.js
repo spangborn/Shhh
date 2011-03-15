@@ -23,6 +23,8 @@
 				methods.transform( item, options );
 			});
 			
+			return target;
+			
 		},
 		transform : function ( target, options ) {
 			var text = $(target).text();
@@ -46,7 +48,7 @@
 				return String(str).toUpperCase();
 			});
 			
-			return $(target).text(text);
+			$(target).text(text);
 			
 		},
 		
