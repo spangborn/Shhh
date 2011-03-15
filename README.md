@@ -1,5 +1,8 @@
-# Shhh #
-Shhh is a jQuery plugin intended to silence screaming internet users. It takes text that is in all caps, and converts it to properly cased sentences. Shhh allows for various ignored words and different regular expressions.
+=======
+# Shhh... #
+- is a jQuery plugin intended to silence screaming internet users.
+- takes text that is in all caps, and converts it to properly cased sentences.
+- allows for various ignored words and different regular expressions.
 
 
 ## Usage ##
@@ -8,9 +11,14 @@ Basic:
     $(".shouting").shhh();
 
 Advanced:
+
 If for whatever reason you want to modify the behavior, you have the following options:
     
-    $('p.comment).shhh({
+    $('.shouting').shhh({
 		punctuation : ['.', '!', '?'], //An array of characters deemed to be punctuation
 		ignore : ["I ", "I'm", "I'll", "I've", "I'd"] //An array of capitalizations that should be ignored
     });
+
+##Help##
+You can find both [@eltiare](http://twitter.com/eltiare) and [@spangborn](http://twitter.com/spangborn) on Twitter.
+
