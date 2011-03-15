@@ -5,7 +5,7 @@ Shhh is a jQuery plugin intended to silence screaming internet users. It takes t
 ## Usage ##
 
 Basic:
-    $(".shouting").shh();
+    $(".shouting").shhh();
 
 Advanced:
 If for whatever reason you want to modify the behavior, you have the following options:
