@@ -1,27 +1,9 @@
 (function( $ ){
 
 		/**
-		 * Sentence Case plugin by @spangborn (http://twitter.com/spangborn)
+		 * Shhh jQuery plugin 
 		 *
-		 * Regular expressions by @eltiare (http://twitter.com/eltiare) as well as some of the logic.
-		 * 
-		 * This should work on multiple targets on selectors.
-		 * 
-		 * Example usage:
-		 * 
-		 * 		$(".case").sentenceCase();
-		 * 
-		 * If you want to change some of the options used in the plugin:
-		 * 
-		 * 		$(".case").sentenceCase({
-		 * 			"startRegex" : /^s*[a-z]/,
-		 * 			"punctuationRegex" : /([\!\.\?])\s+([A-z])/,
-		 * 			"ignore" : ["I ", "I'm", "I'll", "It's"]
-		 * 		});
-		 * 
-		 * KNOWN ISSUES:
-		 * 
-		 * - Ignored strings aren't actually ignored if they're at the start of a string.
+		 * https://github.com/spangborn/Shhh
 		 */
 	
 		// Default values
@@ -81,7 +63,7 @@
 	  };
 		
 	// The actual function definition
-	$.fn.sentenceCase = function ( options ) {
+	$.fn.shhh = function ( options ) {
 		return methods.init(this, options);
 	};
   
