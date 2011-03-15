@@ -5,7 +5,7 @@
 		<script type="text/javascript" src="jquery.shhh.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$(".case").shhh({ignore : ["I ", "I'm", "I'll", "It's", "ICDB"] });
+				$(".case").shhh({"punctuationRegex" : /([\.\!\?]\s[A-z])/ig, "ignore" : ["I ", "I'm", "I'll", "It's", "ICDB"] });
 			});
 		</script>
 	</head>
