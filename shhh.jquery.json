@@ -1,0 +1,39 @@
+{
+  "name": "Shhh",
+  "title": "Shhh",
+  "description": "jQuery plugin intended to silence screaming internet users.",
+  "keywords": [
+    "shh",
+    "caps",
+    "capslock"
+  ],
+  "version": "1.0",
+  "author": {
+    "name": "Sawyer Pangborn",
+    "url": "http://anesti.org"
+  },
+  "maintainers": [
+    {
+      "name": "Sawyer Pangborn",
+      "email": "sawyer@anesti.org",
+      "url": "http://anesti.org"
+    },
+    {
+      "name": "Jeremy Nicoll",
+      "email": "jnicoll@gnexp.com",
+      "url": "http://accentuate.me"
+    }
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
+  "bugs": "https://github.com/spangborn/shhh/issues",
+  "homepage": "https://github.com/spangborn/shhh",
+  "docs": "https://github.com/spangborn/shhh",
+  "dependencies": {
+    "jquery": ">=1.5"
+  }
+}
